@@ -263,7 +263,7 @@ export default function RSVP() {
         >
           <h2 className="text-3xl font-script mb-1">Kindly Reply</h2>
           <p className="text-xs tracking-widest uppercase text-gray-500">
-            by February 1st
+            by December 1st
           </p>
 
           {/* Full Name Field with underlined style */}
