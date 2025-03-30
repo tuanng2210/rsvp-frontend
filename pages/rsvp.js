@@ -169,7 +169,6 @@
 //     </main>
 //   );
 // }
-
 import { useState } from "react";
 import Link from "next/link";
 import confetti from "canvas-confetti";
@@ -183,7 +182,7 @@ export default function RSVP() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5001/api/rsvp", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rsvp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -223,7 +222,7 @@ export default function RSVP() {
           <div className="bg-white border border-gray-200 rounded-md shadow-sm p-6 max-w-md w-full text-center font-elegant">
             <h2 className="text-2xl mb-2">Thank you for your RSVP!</h2>
             <p className="text-sm text-gray-600">
-              We can't wait to celebrate with you 🥂
+              We can&apos;t wait to celebrate with you 🥂
             </p>
             <Link
               href="/"
@@ -321,7 +320,7 @@ export default function RSVP() {
                 value={guests}
                 onChange={(e) => {
                   const value = e.target.value;
-                  // Allow an empty input to reset the value to 1 or the entered number
+                  // Allow empty input, and reset to 1 or update guests with entered number
                   setGuests(value === "" ? 1 : Math.max(1, parseInt(value)));
                 }}
                 className="w-20 p-1 border border-gray-300 rounded text-sm mt-1"
