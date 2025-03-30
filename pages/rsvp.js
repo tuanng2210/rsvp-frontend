@@ -8,10 +8,28 @@ export default function RSVP() {
   const [guests, setGuests] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const response = await fetch("http://localhost:5001/api/rsvp", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ name, attending, guests: attending ? guests : 0 }),
+  //   });
+
+  //   if (response.ok) {
+  //     setSubmitted(true);
+  //     confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+  //   } else {
+  //     alert("Failed to submit RSVP.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5001/api/rsvp", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rsvp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
