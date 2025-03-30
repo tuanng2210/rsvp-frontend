@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
+    "file-saver": "^2.0.5",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
