@@ -50,9 +50,13 @@ export default function RSVP() {
         <div className="flex items-center justify-center">
           <div className="bg-white border border-gray-200 rounded-md shadow-sm p-6 max-w-md w-full text-center font-elegant">
             <h2 className="text-2xl mb-2">Thank you for your RSVP!</h2>
-            <p className="text-sm text-gray-600">
+            {/* <p className="text-sm text-gray-600">
               We can't wait to celebrate with you 🥂
+            </p> */}
+            <p className="text-sm text-gray-600">
+              We can&apos;t wait to celebrate with you 🥂
             </p>
+
             <Link
               href="/"
               className="inline-block mt-6 text-blue-600 hover:underline text-sm"
