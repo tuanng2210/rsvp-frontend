@@ -39,11 +39,11 @@ export default function Admin() {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="text-center">Loading...</p>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-10">
+    <div className="min-h-screen bg-gray-100 p-10">
       <nav className="mb-6 border-b border-gray-200 pb-4">
         <ul className="flex justify-center gap-8 text-sm font-semibold tracking-wide uppercase">
           <li>
