@@ -169,6 +169,7 @@
 //     </main>
 //   );
 // }
+
 import { useState } from "react";
 import Link from "next/link";
 import confetti from "canvas-confetti";
@@ -304,7 +305,7 @@ export default function RSVP() {
             </label>
           </div>
 
-          {/* Guest Count */}
+          {/* Guest Count with + and - Buttons */}
           {attending && (
             <div className="text-sm pt-2">
               <p className="mb-1 tracking-wide text-gray-700">
@@ -314,17 +315,35 @@ export default function RSVP() {
                 </span>
                 guests attending
               </p>
-              <input
-                type="number"
-                min="1"
-                value={guests}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  // Allow empty input, and reset to 1 or update guests with entered number
-                  setGuests(value === "" ? 1 : Math.max(1, parseInt(value)));
-                }}
-                className="w-20 p-1 border border-gray-300 rounded text-sm mt-1"
-              />
+
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => setGuests(Math.max(1, guests - 1))}
+                  className="w-8 h-8 text-lg bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
+                >
+                  -
+                </button>
+
+                <input
+                  type="number"
+                  min="1"
+                  value={guests}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setGuests(value === "" ? 1 : Math.max(1, parseInt(value)));
+                  }}
+                  className="w-20 p-1 border border-gray-300 rounded text-sm mt-1 text-center"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setGuests(guests + 1)}
+                  className="w-8 h-8 text-lg bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
+                >
+                  +
+                </button>
+              </div>
             </div>
           )}
 
