@@ -169,7 +169,6 @@
 //     </main>
 //   );
 // }
-
 import { useState } from "react";
 import Link from "next/link";
 import confetti from "canvas-confetti";
@@ -317,6 +316,7 @@ export default function RSVP() {
               </p>
 
               <div className="flex items-center justify-center gap-4">
+                {/* Decrease Button */}
                 <button
                   type="button"
                   onClick={() => setGuests(Math.max(1, guests - 1))}
@@ -325,6 +325,7 @@ export default function RSVP() {
                   -
                 </button>
 
+                {/* Number Input Field */}
                 <input
                   type="number"
                   min="1"
@@ -336,6 +337,7 @@ export default function RSVP() {
                   className="w-20 p-1 border border-gray-300 rounded text-sm mt-1 text-center"
                 />
 
+                {/* Increase Button */}
                 <button
                   type="button"
                   onClick={() => setGuests(guests + 1)}
