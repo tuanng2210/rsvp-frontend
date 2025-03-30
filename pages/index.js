@@ -1,113 +1,104 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
+  const [timeLeft, setTimeLeft] = useState({});
+
+  useEffect(() => {
+    const targetDate = new Date("2026-02-07T19:00:00");
+    const interval = setInterval(() => {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft(null);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              pages/index.js
-            </code>
-            .
+    <div className="min-h-screen bg-white text-center text-gray-800 px-6 py-10">
+      {/* Top Nav */}
+      <nav className="mb-10 border-b border-gray-200 pb-4">
+        <ul className="flex justify-center gap-8 text-sm font-semibold tracking-wide uppercase">
+          <li>
+            <Link href="/" className="hover:underline">
+              Home
+            </Link>
           </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
+          <li>
+            <Link href="/rsvp" className="hover:underline">
+              RSVP
+            </Link>
           </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        </ul>
+      </nav>
+
+      {/* Content Container */}
+      <div className="max-w-3xl mx-auto space-y-8">
+        {/* Names */}
+        <div>
+          <h1 className="text-5xl font-script mb-2">Tuan Nguyen</h1>
+          <p className="text-base mb-2">and</p>
+          <h2 className="text-5xl font-script">An Lac</h2>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Invitation-style Card */}
+        <div className="bg-white border border-gray-200 rounded-md shadow-sm p-6 max-w-lg mx-auto font-elegant text-sm space-y-4">
+          {/* Divider + Date */}
+          <div className="space-y-2">
+            <div className="flex justify-center">
+              <div className="w-10 h-px bg-gray-300"></div>
+            </div>
+            <p className="text-sm text-gray-800 tracking-widest uppercase text-center">
+              Saturday, February 7, 2026 • 7:00 PM
+            </p>
+          </div>
+
+          {/* Venue */}
+          <div className="text-center">
+            <p className="text-base font-semibold text-gray-900 not-italic">
+              Hotel Nikko Saigon
+            </p>
+            <p className="text-sm text-gray-700 not-italic leading-relaxed">
+              235 Đường Nguyễn Văn Cừ, Nguyễn Cư Trinh, Quận 1,
+              <br />
+              Hồ Chí Minh 700000, Vietnam
+            </p>
+          </div>
+
+          {/* Countdown */}
+          <div className="text-center text-gray-600 text-sm">
+            {timeLeft ? (
+              <p>
+                {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{" "}
+                minutes {timeLeft.seconds} seconds
+              </p>
+            ) : (
+              <p className="text-gray-500 font-light">
+                The big day is here! 🎉
+              </p>
+            )}
+          </div>
+
+          {/* RSVP Button */}
+          <div className="pt-4 text-center">
+            <Link href="/rsvp">
+              <span className="inline-block border border-gray-800 text-gray-800 px-6 py-2 rounded hover:bg-gray-100 tracking-wide font-medium transition uppercase">
+                RSVP Here
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
